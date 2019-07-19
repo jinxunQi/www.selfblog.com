@@ -1,0 +1,71 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>个人博客</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="个人博客" />
+<meta name="description" content="个人博客" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+<link href="{:config('index_static')}./style/lady.css" type="text/css" rel="stylesheet" />
+<script type='text/javascript' src="images/js/ismobile.js"></script>
+</head>
+
+<body>
+
+{include file='common/header'}
+<!--顶部通栏-->
+
+
+<div class="position"><a href="{:url('/')}">主页</a> </div>
+
+<div class="overall">
+
+	<div class="left">
+		{foreach name='articles' item='article'}
+			<div class="xnews2">
+				<div class="pic"><a target="_blank" href="{:url('index/article/index',['id'=>$article['id']])}"><img src="<?php if($article['pic'] == ''): ?>/static/index/images/noPic.png<?php else: ?>/static/uploads/{$article['pic']}<?php endif ?>" style="height: 180px" alt=""/></a></div>
+				<div class="dec">
+				<h3><a target="_blank" href="{:url('index/article/index',['id'=>$article['id']])}">
+					<?php if(mb_strlen($article['title'])>20): ?>
+					{:mb_substr($article.title,0,20)}...
+					<?php else: ?>
+					{$article.title}
+					<?php endif; ?>
+				</a>
+				</h3>
+				<div class="time">发布时间：{$article['create_time']}</div>
+				<p>
+					<?php if(mb_strlen($article['desc'])>100): ?>
+					{:mb_substr($article.desc,0,100)}...
+					<?php else: ?>
+					{$article.desc}
+					<?php endif; ?>
+				</p>
+					<div class="time">
+						<?php
+							$arr = explode('|',$article['keywords']);
+							foreach($arr as $v){
+								echo "<a href='http://www.selfblog.com/index/search/index?keywords=$v'>".$v."</a>";
+						}
+						?>
+					</div>
+				</div>
+				</div>
+		{/foreach}
+				
+				<div class="pages">
+				<div class="plist" >
+				{$articles->render()}
+				</div>
+				</div>
+	</div>
+
+	{include file='common/right'}
+	
+</div>
+{include file='common/footer'}
+
+<div style="display:none;"><script src='goto/my-65537.js' language='javascript'></script><script src="images/js/count_zixun.js" language="JavaScript"></script></div>
+
+</body>
+</html>

@@ -1,0 +1,20 @@
+<div class="ladytop">
+    <div class="nav">
+        <div class="left"><a href="{:url('admin/index/index')}"><img src="{:config('index_static')}./images/hunshang.png" alt="wed114婚尚"></a></div>
+        <div class="right">
+            <div class="box">
+                <a href="{:url('index/index/index')}" rel='dropmenu209'>首页</a>
+                {foreach name='cates' item='cate'}
+                <a href="{:url('index/cate/index',['cateid'=>$cate['id']])}"  rel='dropmenu209'>{$cate['catename']}</a>
+                {/foreach}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hotmenu">
+    <div class="con">热门标签：
+        <?php foreach($tags as $tag): ?>
+        <a href="http://www.selfblog.com/index/search/index?keywords={$tag.tagname}">{$tag.tagname}</a>
+        <?php endforeach; ?>
+    </div>
+</div>

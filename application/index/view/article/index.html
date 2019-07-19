@@ -1,0 +1,107 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>博客文章详情</title>
+        <meta name="keywords" content="博客文章详情" />
+        <meta name="description" content="博客文章详情" />
+        <meta name="mobile-agent" content="format=html5; url=http://m.zx.wed114.cn/shenghuo/20160920156214.html" />
+        <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7">
+		<link href="{:config('index_static')}./style/lady.css" type="text/css" rel="stylesheet" />
+		<script type='text/javascript' src="{:config('index_static')}./style/ismobile.js"></script>
+    </head>
+
+    <body>
+
+    {include file='common/header'}
+
+        <!--顶部通栏-->
+        <script src='/jiehun/goto/my-65547.js' language='javascript'></script>
+
+        <div class="position"><a href="{:url('/')}">主页</a> > <a href="{:url('index/cate/index',['cateid'=>$cateN['id']])}">{$cateN['catename']}</a> >  </div>
+
+        <div class="overall">
+            <div class="left">
+                <div class="scrap">
+                    <h1>{$article.title}</h1>
+                    <div class="spread">
+                        <span class="writor">发布时间：{$article.create_time}</span>
+                        <span class="writor">编辑：{$article.author}</span>
+                        <span class="writor">标签：<?php
+							$arr = explode('|',$article['keywords']);
+							foreach($arr as $v){
+								echo "<a href='#'>$v</a>";
+						}
+						?>
+                        </span>
+                        <span class="writor">热度：{$article.click}</span>
+                    </div>
+                </div>
+
+                <!--百度分享-->
+                <script src='/jiehun/goto/my-65542.js' language='javascript'></script>
+
+                <div class="takeaway">
+                    <span class="btn arr-left"></span>
+                    <p class="jjxq">
+                        {$article.desc}
+                    </p>
+                    <span class="btn arr-right"></span>
+                </div>
+
+                  <script src='/jiehun/goto/my-65541.js' language='javascript'></script>
+
+                <div class="substance">
+                    {$article.content}
+                </div>
+
+                <div class="biaoqian">
+                   
+                </div>
+
+
+
+                <!--相关阅读 -->
+                <div class="xgread">
+                    <div class="til"><h4>相关阅读</h4></div>
+                    <div class="lef"><!--相关阅读主题链接--><script src='/jiehun/goto/my-65540.js' language='javascript'></script></div>
+                    <div class="rig">
+                        <ul>
+                            {foreach name='$reslatres' item='res'}
+                            <li><a href="{:url('index/article/index',['id'=>$res[0]])}" target="_blank">{$res.1}</a>
+                            </li>
+                            {/foreach}
+                        </ul>
+                    </div>
+                </div>
+
+                <!--频道推荐-->
+                <div class="hotsnew">
+                    <div class="til"><h4>频道推荐</h4></div>
+                    <ul>
+                        <?php foreach( $recCs as $res): ?>
+                        <li><div class="tu"><a href="{:url('index/article/index',['id'=>$res['id']])}" target="_blank"><img src="<?php if($res['pic']): ?>/static/uploads/{$res.pic}<?php else: ?>/static/index/images/noPic.png<?php endif; ?>" alt=""/></a></div>
+                            <p><a href="{:url('index/article/index',['id'=>$res['id']])}">{$res['title']}</a>
+                            </p>
+                        </li>
+                        <?php endforeach; ?>
+
+
+                    </ul>
+                </div>		
+            </div>
+
+            {include file='common/right'}
+    
+</div>
+
+        {include file='common/footer'}
+
+        <!--暂时没用到的js-->
+       <!-- <div style="display:none;">
+            <script src='/jiehun/goto/my-65537.js' language='javascript'></script>
+            <script src="/jiehun/images/js/count_zixun.js" language="JavaScript"></script>
+        </div>-->
+
+    </body>
+</html>
